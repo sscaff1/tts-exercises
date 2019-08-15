@@ -9,3 +9,7 @@ li {
   border-radius: 3px;
   cursor: pointer;
 }
+
+.list li.completed .item {
+  text-decoration: line-through;
+}
