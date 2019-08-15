@@ -5,7 +5,21 @@ const loadingEl = document.querySelector('.loading');
 function getArticles() {
   return fetch(
     `${BASE_URL}/search/titles/results/?terms=new_orleans&format=json`
-  ).then(resp => resp.json());
+  )
+    .then(resp => resp.json())
+    .then(articles => {
+      window.localStorage.setItem(
+        'articles',
+        JSON.stringify({ articles, expTime: getTomorrow() })
+      );
+      return articles;
+    });
+}
+
+function getTomorrow() {
+  const today = new Date();
+  const tomorrow = new Date(today.setDate(today.getDate() + 1));
+  return tomorrow;
 }
 
 function formatData(data) {
@@ -45,11 +59,22 @@ function toggleLoading(isLoading = false) {
 // }
 
 function startApp() {
-  getArticles()
-    .then(formatData)
-    .then(renderListOfArticles)
-    .then(() => toggleLoading());
-  // .then(scrollUser);
+  const currentDate = new Date();
+  const savedArticles = window.localStorage.getItem('articles');
+  const { articles, expTime } =
+    (savedArticles && JSON.parse(savedArticles)) || {};
+  if (savedArticles && currentDate < new Date(expTime)) {
+    const formattedArticles = formatData(articles);
+    renderListOfArticles(formattedArticles);
+    toggleLoading();
+  } else {
+    toggleLoading(true);
+    getArticles()
+      .then(formatData)
+      .then(renderListOfArticles)
+      .then(() => toggleLoading());
+    // .then(scrollUser);
+  }
 }
 
 function renderListOfArticles(html) {
