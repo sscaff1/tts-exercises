@@ -1,0 +1,11 @@
+li {
+  margin-bottom: 10px;
+}
+
+.list li .x {
+  margin-left: 10px;
+  border: 1px solid #000;
+  padding: 2px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}

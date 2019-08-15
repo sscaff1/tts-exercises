@@ -1,0 +1,22 @@
+.hidden {
+  display: none;
+}
+.article {
+  display: block;
+  border: 1px solid #000;
+  border-radius: 2px;
+  padding: 10px 5px;
+  margin-bottom: 10px;
+}
+#blog a {
+  text-decoration: none;
+  color: #000;
+}
+.article p {
+  margin: 0;
+  padding: 0;
+}
+.article h3 {
+  margin: 0;
+  margin-bottom: 5px;
+}
