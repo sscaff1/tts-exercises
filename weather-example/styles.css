@@ -1,0 +1,18 @@
+img {
+  max-height: 200px;
+}
+
+#container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#weather {
+  margin-left: 50px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  display: inline-block;
+  padding: 20px;
+  margin-top: 10px;
+}
