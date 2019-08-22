@@ -1,0 +1,16 @@
+#list {
+  padding: 20px;
+  border: 1px solid red;
+}
+
+.accordion {
+  height: 300px;
+  width: 100%;
+  border: 1px solid black;
+  display: none;
+  overflow: scroll;
+}
+
+#list {
+  display: none;
+}
