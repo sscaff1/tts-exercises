@@ -1,0 +1,34 @@
+#posts {
+  padding: 20px 40px;
+}
+
+.post {
+  border: 1px solid #000;
+  padding: 10px 20px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.post:hover {
+  transform: scale(1.05);
+}
+
+.deleteButton,
+.editButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.editButton {
+  border: none;
+  right: 30px;
+}
