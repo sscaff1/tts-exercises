@@ -1,0 +1,28 @@
+{
+  "name": "npm-example",
+  "version": "1.0.0",
+  "description": "This is an example",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watchAll",
+    "coverage": "jest --coverage",
+    "moment-example": "moment -f \"dddd, MMMM Do YYYY, h:mm:ss a\"",
+    "start": "node hello.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "./*.js"
+    ]
+  }
+}

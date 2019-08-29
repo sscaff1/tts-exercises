@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fetch Posts should match the data snapshot 1`] = `
+Object {
+  "body": "test body",
+  "id": 1,
+  "title": "test title do not match",
+  "userId": 1,
+}
+`;

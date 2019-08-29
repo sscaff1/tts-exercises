@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1566954413946" clover="3.2.0">
+  <project timestamp="1566954413947" name="All files">
+    <metrics statements="18" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="1" elements="24" coveredelements="3" complexity="0" loc="18" ncloc="18" packages="1" files="4" classes="4"/>
+    <file name="fetchPosts.js" path="/Users/steven/tts/npm-example/fetchPosts.js">
+      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <line num="1" count="0" type="stmt"/>
+      <line num="4" count="0" type="stmt"/>
+      <line num="5" count="0" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+    </file>
+    <file name="getTime.js" path="/Users/steven/tts/npm-example/getTime.js">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <line num="1" count="0" type="stmt"/>
+      <line num="4" count="0" type="stmt"/>
+      <line num="7" count="0" type="stmt"/>
+    </file>
+    <file name="hello.js" path="/Users/steven/tts/npm-example/hello.js">
+      <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <line num="1" count="0" type="stmt"/>
+      <line num="2" count="0" type="stmt"/>
+      <line num="3" count="0" type="stmt"/>
+      <line num="5" count="0" type="stmt"/>
+      <line num="7" count="0" type="stmt"/>
+      <line num="8" count="0" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+    </file>
+    <file name="math.js" path="/Users/steven/tts/npm-example/math.js">
+      <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="9" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
