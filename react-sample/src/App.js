@@ -68,7 +68,7 @@ function App() {
     e.preventDefault();
 
     setCount(0);
-  };
+  }; 
   return (
     <div>
       <Count count={count} />
