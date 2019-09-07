@@ -1,0 +1,23 @@
+.header,
+.footer {
+  height: 100px;
+  width: 100%;
+  background: dodgerblue;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.body {
+  padding: 20px 50px;
+}
+
+.footer {
+  font-size: 32px;
+}

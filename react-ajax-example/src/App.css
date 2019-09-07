@@ -1,0 +1,24 @@
+html {
+  -webkit-text-size-adjust: none;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: scroll;
+  scroll-behavior: smooth;
+}

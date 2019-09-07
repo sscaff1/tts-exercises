@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
-import Post from './Post';
+import PostList from './PostList';
+import './App.css';
 
 const BASE_URL = 'http://jsonplaceholder.typicode.com';
 
@@ -75,42 +76,40 @@ function editPost(postId, userId, title, body) {
   }).then(response => response.json());
 }
 
-function App() {
+function App({ match }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
+    const endpoint = match.params.userId
+      ? `posts?userId=${match.params.userId}`
+      : 'posts';
     dispatch({ type: listOfActions.START_FETCH });
-    fetch(`${BASE_URL}/posts`)
+    fetch(`${BASE_URL}/${endpoint}`)
       .then(resp => resp.json())
       .then(posts => {
         // do something
         dispatch({ type: listOfActions.FINISH_FETCH, posts });
       });
-  }, []);
-  if (state.loading) {
-    return <h2>Loading...</h2>;
-  }
-  return state.posts.map(post => {
-    if (state.postsWithLoading.includes(post.id)) {
-      return <h3 key={post.id}>Loading...</h3>;
-    }
-    return (
-      <Post
-        key={post.id}
-        title={post.title}
-        description={post.body}
-        userId={post.userId}
-        onEdit={(title, description) => {
-          dispatch({ type: listOfActions.TOGGLE_POST_LOADING, id: post.id });
-          editPost(post.id, post.userId, title, description).then(newPost => {
-            dispatch({ type: listOfActions.UPDATE_POST, newPost });
-          });
-        }}
-        onDelete={() =>
-          dispatch({ type: listOfActions.DELETE_POST, id: post.id })
-        }
-      />
-    );
-  });
+  }, [match.params.userId]);
+  return (
+    <PostList
+      loading={state.loading}
+      posts={state.posts}
+      postsWithLoading={state.postsWithLoading}
+      onEdit={(post, title, description) => {
+        dispatch({
+          type: listOfActions.TOGGLE_POST_LOADING,
+          id: post.id,
+        });
+        editPost(post.id, post.userId, title, description).then(newPost => {
+          dispatch({ type: listOfActions.UPDATE_POST, newPost });
+        });
+      }}
+      onDelete={post =>
+        dispatch({ type: listOfActions.DELETE_POST, id: post.id })
+      }
+      userId={match.params.userId}
+    />
+  );
 }
 
 export default App;

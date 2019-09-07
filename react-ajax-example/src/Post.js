@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 import PostControl from './PostControl';
-import PostEditForm from './PostEditForm';
+import PostForm from './PostForm';
 
 const styles = {
   root: {
@@ -18,9 +19,13 @@ const styles = {
     top: 0,
     right: 0,
   },
+  normal: {
+    color: '#000',
+    textDecoration: 'none',
+  },
 };
 
-function Post({ title, description, userId, onEdit, onDelete }) {
+function Post({ id, title, description, userId, onEdit, onDelete, match }) {
   const [editMode, setEditMode] = useState(false);
   const [stateTitle, setStateTitle] = useState(title);
   const [stateDescription, setStateDescription] = useState(description);
@@ -49,19 +54,24 @@ function Post({ title, description, userId, onEdit, onDelete }) {
         />
       </div>
       {editMode ? (
-        <PostEditForm
+        <PostForm
           title={stateTitle}
           description={stateDescription}
-          onEditPost={onEditPost}
+          onSubmit={onEditPost}
           onCancel={onEditCancel}
           onChangeTitle={e => setStateTitle(e.target.value)}
           onChangeDescription={e => setStateDescription(e.target.value)}
+          submitLabel="Edit Post"
         />
       ) : (
         <>
-          <a href="#">Get posts from {userId}</a>
-          <h3>{stateTitle}</h3>
-          <p>{stateDescription}</p>
+          {!!match.params.userId ? null : (
+            <Link to={`/user/${userId}/posts`}>Get posts from {userId}</Link>
+          )}
+          <Link style={styles.normal} to={`/posts/${id}`}>
+            <h3>{stateTitle}</h3>
+            <p>{stateDescription}</p>
+          </Link>
         </>
       )}
     </div>
@@ -74,4 +84,6 @@ Post.propTypes = {
   userId: PropTypes.number.isRequired,
 };
 
-export default Post;
+const PostWithRouter = withRouter(Post);
+
+export default PostWithRouter;

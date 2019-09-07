@@ -7,16 +7,17 @@ const styles = {
   },
 };
 
-function PostEditForm({
+function PostForm({
   title,
   description,
-  onEditPost,
+  onSubmit,
   onCancel,
   onChangeTitle,
   onChangeDescription,
+  submitLabel,
 }) {
   return (
-    <form onSubmit={onEditPost}>
+    <form onSubmit={onSubmit}>
       <input
         style={styles.input}
         type="text"
@@ -29,7 +30,7 @@ function PostEditForm({
         value={description}
       />
       <div>
-        <button type="submit">Edit Post</button>
+        <button type="submit">{submitLabel}</button>
         <button type="button" onClick={onCancel}>
           Cancel
         </button>
@@ -38,4 +39,4 @@ function PostEditForm({
   );
 }
 
-export default PostEditForm;
+export default PostForm;
