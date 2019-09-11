@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PostControl from './PostControl';
 import PostForm from './PostForm';
+import postActions from './core/posts/actions';
 
 const styles = {
   root: {
@@ -25,16 +27,15 @@ const styles = {
   },
 };
 
-function Post({ id, title, description, userId, onEdit, onDelete, match }) {
+function Post({ id, title, description, userId, match }) {
   const [editMode, setEditMode] = useState(false);
   const [stateTitle, setStateTitle] = useState(title);
   const [stateDescription, setStateDescription] = useState(description);
-
+  const dispatch = useDispatch();
   const toggleEditMode = () => setEditMode(e => !e);
   const onEditPost = e => {
     e.preventDefault();
-    // toggleEditMode();
-    onEdit(stateTitle, stateDescription);
+    dispatch(postActions.editPost(id, userId, stateTitle, stateDescription));
   };
   const onEditCancel = e => {
     e.preventDefault();
@@ -49,7 +50,7 @@ function Post({ id, title, description, userId, onEdit, onDelete, match }) {
       <div style={styles.control}>
         <PostControl
           editMode={editMode}
-          onDeleteClick={onDelete}
+          onDeleteClick={() => dispatch(postActions.deletePost(id))}
           onEditClick={toggleEditMode}
         />
       </div>

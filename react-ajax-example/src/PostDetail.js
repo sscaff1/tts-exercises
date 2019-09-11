@@ -1,35 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import postActions from './core/posts/actions';
 
-const BASE_URL = 'http://jsonplaceholder.typicode.com';
-
-function getPostDetail(id) {
-  return fetch(`${BASE_URL}/posts/${id}`).then(resp => resp.json());
-}
-
-function getCommentsFromPostId(id) {
-  return fetch(`${BASE_URL}/comments?postId=${id}`).then(resp => resp.json());
-}
-
-function PostDetail({ history, match }) {
-  const [details, setDetails] = useState(null);
-  const [comments, setComments] = useState([]);
+function PostDetail({ match }) {
+  const dispatch = useDispatch();
+  const { ui, comments } = useSelector(state => state);
   useEffect(() => {
-    Promise.all([
-      getPostDetail(match.params.id),
-      getCommentsFromPostId(match.params.id),
-    ]).then(data => {
-      const [postDetails, postComments] = data;
-      setDetails(postDetails);
-      setComments(postComments);
-    });
-  }, [match.params.id]);
-  if (!details) {
+    dispatch(postActions.getPostDetail(match.params.id));
+  }, [match.params.id, dispatch]);
+  if (ui.loading) {
     return 'Loading...';
   }
   return (
     <div>
-      <h2>{details.title}</h2>
-      <p>{details.body}</p>
+      <h2>{ui.post.title}</h2>
+      <p>{ui.post.body}</p>
       <h3>Comments</h3>
       {comments.map(comment => (
         <div key={comment.id}>
